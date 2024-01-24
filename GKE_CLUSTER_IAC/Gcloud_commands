@@ -1,0 +1,19 @@
+#create a gmail account 
+#Use the Auth to autehnticate teh account on the gcloud 
+> gcloud auth login
+
+#set the project under as a current config  
+> gcloud config set project devops-cicd-412116
+
+#create a service account 
+>  gcloud iam service-accounts create sa-platform-tf --description="Terraform Service account" --display-name="Terraform Service Account" 
+
+Create a Bucket 
+> gsutil  mb gs://devops-gke-state
+Add version and make it regional for now 
+
+
+#Terraafrom 
+> Terraform init 
+> terraform validate
+> terraform plan -var-file="variable.tfvars"  -lock=false
