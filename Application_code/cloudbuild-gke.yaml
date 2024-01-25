@@ -18,8 +18,8 @@ steps:
   - 'deployment/cicd-app-1'
   - 'runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
   env : 
-  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-terraform-project'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-terraform-project-dev'
 
 substitutions:
   _PROJECT_ID : devops-cicd-412116
