@@ -11,12 +11,13 @@ steps:
   args: ['push','gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}']
 
 # kubectl set image deployment/cicd-app-1 runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
-- name: 'gcr.io/cloud-builders/kubectl'
-  args :
-  - 'set'
-  - 'image'
-  - 'deployment/gke-image'
-  - 'gke-image=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=deploy.yaml
+  - --image=${_CINAME}:${_VERSION}
+  - --location=${_CLOUDSDK_COMPUTE_ZONE}
+  - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
   env : 
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gke-terraform-project-dev'
