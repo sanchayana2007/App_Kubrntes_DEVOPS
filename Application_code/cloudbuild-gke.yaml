@@ -2,7 +2,7 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/git'
-  args: ['clone', 'github_sanchayana2007_app_kubrntes_devops --project=devops-cicd-412116']
+  args: ['clone', 'https://github.com/sanchayana2007/App_Kubrntes_DEVOPS.git']
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build','-t',  'gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}', '.']
