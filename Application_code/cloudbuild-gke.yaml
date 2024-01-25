@@ -15,7 +15,7 @@ steps:
   args:
   - run
   - --filename=deploy.yaml
-  - --image=${_CINAME}:${_VERSION}
+  - --image=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
   - --location=${_CLOUDSDK_COMPUTE_ZONE}
   - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
   env : 
