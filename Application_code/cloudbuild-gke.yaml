@@ -15,8 +15,8 @@ steps:
   args :
   - 'set'
   - 'image'
-  - 'deployment/cicd-app-1'
-  - 'runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
+  - 'deployment/gke-image'
+  - 'gke-image=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
   env : 
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gke-terraform-project-dev'
