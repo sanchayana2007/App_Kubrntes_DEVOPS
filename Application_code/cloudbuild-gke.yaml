@@ -1,0 +1,27 @@
+#devops-cicd-412116/github_sanchayana2007_app_kubrntes_devops/main//
+
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'devops-cicd-412116/github_sanchayana2007_app_kubrntes_devops/main/']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build','-t',  'gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push','gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}']
+
+# kubectl set image deployment/cicd-app-1 runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
+- name: 'gcr.io/cloud-builders/kubectl'
+  args :
+  - 'set'
+  - 'image'
+  - 'deployment/cicd-app-1'
+  - 'runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
+  env : 
+  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-terraform-project'
+
+substitutions:
+  _PROJECT_ID : devops-cicd-412116
+  _CINAME : gke-image
+  _VERSION : v3.0

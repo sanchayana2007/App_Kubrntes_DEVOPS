@@ -47,4 +47,22 @@ module "vpc_with_subnets" {
 
 
   cidrBlock = var.cidrBlock
+  depends_on = [google_project_service.gcp_services]
 }
+
+
+module "gke_with_node_group" {
+  # invoke gke module under modules directory
+  source = "./module/gke"
+
+  cluster_name = var.cluster_name
+  #k8s_version  = var.k8s_version
+  region       = var.region
+  zone 			= var.zone
+  nodepool_count    = var.nodepool_count
+  network      = module.vpc_with_subnets.vpc_self_link
+  subnetwork   = module.vpc_with_subnets.subnet_self_link
+  depends_on = [google_project_service.gcp_services]
+}
+
+

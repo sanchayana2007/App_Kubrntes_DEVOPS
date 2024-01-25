@@ -20,6 +20,11 @@ variable "region" {
 
   } 
 
+  variable "zone" {
+  type        = string
+
+  } 
+
 variable "cidrBlock" {
   type        = string
 
@@ -32,14 +37,14 @@ variable "gcp_service_list" {
     "cloudresourcemanager.googleapis.com",
     "serviceusage.googleapis.com",
     "compute.googleapis.com",
-    "iam.googleapis.com"
+    "iam.googleapis.com",
+    "container.googleapis.com"
   ]
 }
 
-variable "nodepools" 
-variable "cidrBlock" {
-  type        = integer
-  default = 1
-
-  }
+variable "nodepool_count" {
+  type    = number
+  
+}
+  
 
