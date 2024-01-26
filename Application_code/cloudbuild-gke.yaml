@@ -2,23 +2,29 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/git'
+  id: PreRequsite
   args: ['clone', 'https://github.com/sanchayana2007/App_Kubrntes_DEVOPS.git']
 
 - name: 'gcr.io/cloud-builders/docker'
+  id: Build
   args: ['build','-t',  'gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
+  id: PublishImage
   args: ['push','gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}']
 
 # kubectl set image deployment/cicd-app-1 runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
-- name: "gcr.io/cloud-builders/gke-deploy"
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Deploy
+  entrypoint: 'bash'
   args:
-  - run
-  - --filename=deploy.yaml
-  - --image=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
-  - --location=${_CLOUDSDK_COMPUTE_ZONE}
-  - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
-  
+    - '-c'
+    - |
+         PROJECT=$$(gcloud config get-value core/project)          
+         gke-gcloud-auth-plugin --version
+         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+         gcloud container clusters get-credentials "gke-terraform-project-dev" --project "project111-id"  --zone "us-east1"  
+         kubectl apply -f deploy.yaml
 
  
   env : 
