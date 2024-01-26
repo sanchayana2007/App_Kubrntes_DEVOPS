@@ -18,12 +18,7 @@ steps:
   - --image=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
   - --location=${_CLOUDSDK_COMPUTE_ZONE}
   - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
-  images:
-  - 'gcr.io/cloud-builders/gke-deploy'
-  availableSecrets:
-    secretManager:
-    - versionName: projects/devops-cicd-412116/secrets/kubeconfig/versions/latest
-      env: 'CLOUDSDK_CONFIG'
+  
 
  
   env : 
