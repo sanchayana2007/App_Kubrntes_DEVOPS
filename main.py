@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Welcome to 2022 CICD GKE'
+    return 'Welcome to 2022 CICD GKE Sanch'
 
 
 if __name__ == '__main__':
