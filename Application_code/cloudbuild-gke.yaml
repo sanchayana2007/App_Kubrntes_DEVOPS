@@ -47,6 +47,6 @@ steps:
 substitutions:
   _PROJECT_ID : devops-cicd-412116
   _CINAME : gke-image
-  _VERSION : v4.0
+  _VERSION : v5.0
 
 
