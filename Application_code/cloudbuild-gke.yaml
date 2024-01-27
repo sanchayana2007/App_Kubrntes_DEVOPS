@@ -21,10 +21,10 @@ steps:
 
 
 - name: 'ubuntu'
-  id: SonarQube Scan
+  id: QA_Test
   script: |
     #!/usr/bin/env bash
-    echo "Sonar scan
+    echo "QA Test"
   
   # kubectl set image deployment/ runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
 - name: 'gcr.io/cloud-builders/gcloud'
