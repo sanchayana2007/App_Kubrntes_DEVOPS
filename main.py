@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask,request
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return 'Welcome to 2022 CICD GKE Sanch'
+    user_agent = request.headers.get('User-Agent')
+    ua= "User-Agent:" + user_agent
+    return 'Welcome to 2022  ' + ua
 
 
 if __name__ == '__main__':
