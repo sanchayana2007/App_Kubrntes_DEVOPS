@@ -8,12 +8,23 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
   args: ['build','-t',  'gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}', '.']
+  
+- name: gcr.io/cloud-builders/bash
+  id: SonarQube Scan
+  args:
+    - echo "SAST on the Build"
 
 - name: 'gcr.io/cloud-builders/docker'
   id: PublishImage
   args: ['push','gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}']
 
-# kubectl set image deployment/cicd-app-1 runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
+
+- name: gcr.io/cloud-builders/bash
+  id: QA_Test
+  args:
+    - echo "Implenet a QA on teh docker Image"
+  
+  # kubectl set image deployment/ runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   entrypoint: 'bash'
