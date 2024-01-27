@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: "gke-image-1"
-        image: "gcr.io/devops-cicd-412116/gke-image:v3.0"
+        image: "gcr.io/devops-cicd-412116/gke-image:v4.0"
 
 
 ---
