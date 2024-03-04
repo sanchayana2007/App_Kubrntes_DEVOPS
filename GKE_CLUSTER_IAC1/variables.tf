@@ -53,7 +53,6 @@ variable "gcp_service_list" {
   default = [
     "cloudresourcemanager.googleapis.com",
     "serviceusage.googleapis.com",
-    "compute.googleapis.com",
     "iam.googleapis.com",
     "container.googleapis.com"
   ]

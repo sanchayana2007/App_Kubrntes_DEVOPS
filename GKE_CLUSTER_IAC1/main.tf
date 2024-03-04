@@ -12,7 +12,7 @@ provider "kubernetes" {
 resource "google_project_service" "gcp_services" {
   for_each = toset(var.gcp_service_list)
   project = var.project_id
-  disable_dependent_services=true
+  #disable_dependent_services=true
   service = each.key
 
 }

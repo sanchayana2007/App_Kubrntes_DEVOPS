@@ -17,3 +17,14 @@ Add version and make it regional for now
 > Terraform init 
 > terraform validate
 > terraform plan -var-file="variable.tfvars"  -lock=false
+
+
+#GKE configs 
+
+#get the service account associated with the nodes 
+gcloud container clusters describe gke-terraform-project-dev --format='value(nodeConfig.serviceAccount)' --zone=us-east1
+
+#get access the node to teh service accounts 
+
+gcloud projects add-iam-policy-binding devops-cicd-412116   --member="serviceAccount:gke-terraform-project@devops-cicd-412116.iam.gserviceaccount.com"   --role="roles/storage.objectViewer"
+
